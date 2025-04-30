@@ -1,0 +1,69 @@
+🧩 Entities (Database Tables)
+
+User
+
+| Field       | Type        | Notes                |
+|-------------|-------------|----------------------|
+| id          | int (PK)    | Auto-generated       |
+| name        | string      | Full name            |
+| email       | string      | Unique               |
+| password    | string      | (Hashed)             |
+| role        | enum        | Admin / Underwriter  |
+| createdAt   | timestamp   |                      |
+| updatedAt   | timestamp   |                      |
+
+Submission
+
+| Field         | Type           | Notes                      |
+|---------------|----------------|----------------------------|
+| id            | int (PK)       | Auto-generated             |
+| clientName    | string         | Name of client submitting risk |
+| description   | text           | Risk details               |
+| riskScore     | float/null     | Optional initially         |
+| status        | enum           | New / Under Review / Quoted / Declined |
+| submittedById | int (FK)       | FK → User(id)              |
+| documents     | array (text)   | File URLs (optional now)   |
+| createdAt     | timestamp      |                            |
+| updatedAt     | timestamp      |                            |
+
+Quote
+
+| Field         | Type           | Notes                      |
+|---------------|----------------|----------------------------|
+| id            | int (PK)       |                            |
+| submissionId  | int (FK)       | Linked to a Submission     |
+| premiumAmount | float          | Premium quoted             |
+| terms         | text           | Special conditions         |
+| status        | enum           | Pending / Accepted / Declined |
+| createdAt     | timestamp      |                            |
+
+Policy
+
+| Field         | Type           | Notes                      |
+|---------------|----------------|----------------------------|
+| id            | int (PK)       |                            |
+| quoteId       | int (FK)       | Linked to Quote            |
+| policyNumber  | string         | Generated unique policy ID |
+| startDate     | date           | Policy active start        |
+| endDate       | date           | Policy active end          |
+| createdAt     | timestamp      |                            |
+
+🔗 Relationships:
+- A User submits many Submissions
+- A Submission can have one Quote (if quoted)
+- A Quote can lead to one Policy (if accepted)
+
+(We can easily model this in TypeORM too.)
+
+🖥️ Frontend Pages (Mapped to above)
+
+| Page                        | Purpose                          |
+|-----------------------------|----------------------------------|
+| Login                       | User Authentication             |
+| Dashboard                   | See Submissions, Quotes, Policies |
+| New Submission Form         | Create risk submissions          |
+| Submissions List + View Page| See list and details             |
+| Quote Form (if reviewer)    | Create Quotes                    |
+| Policy View (after acceptance) | View issued policies          |
+| Admin Panel                 | Manage users                     |
+

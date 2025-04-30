@@ -1,0 +1,78 @@
+NDERWRITING FUNDAMENTALS FOR YOUR APP
+
+1. What is Underwriting in Insurance/Reinsurance?
+Underwriting is the process of evaluating risk and determining the terms (premium, coverage, exclusions) for offering insurance.
+
+In reinsurance, underwriting happens at a larger, aggregated risk level, sometimes involving groups of policies, portfolios, or high-value risks.
+
+An underwriter analyzes the information submitted and decides:
+
+- Approve, and at what cost (premium)
+- Reject, if the risk is too high
+- Modify coverage (e.g., impose special terms)
+
+2. Steps of Underwriting (Simplified for App)
+
+| Step | Description |
+|------|-------------|
+| 1.   | Risk Data Collection: Collect all client/risk details (via "submission" form). |
+| 2.   | Risk Assessment: Analyze the risk level of the client (using models/scoring logic). |
+| 3.   | Premium Calculation: Based on the risk score and coverage amount. |
+| 4.   | Offer Quote: Create and send a quote with terms and premium. |
+| 5.   | Bind Policy (if accepted): Issue a formal policy document. |
+
+3. Underwriting — Math, Models, and Algorithms
+Here are some realistic, simple algorithms you can implement in your backend.
+
+A. Risk Scoring Logic
+We define a risk score for every submission. Higher score means more risk and a higher premium.
+
+Example fields that could affect the risk score:
+
+| Field                | How it affects risk?                  | Example scoring                  |
+|----------------------|---------------------------------------|----------------------------------|
+| Industry type        | Some industries are riskier           | +20% if "Construction"           |
+| Location             | Some areas are more disaster-prone    | +15% if "Flood zone"             |
+| Annual Revenue       | Very high revenues could imply bigger claims | +10% if revenue > 10M          |
+| Previous Claims      | History of claims increases risk      | +30% if >2 past claims           |
+| Requested Coverage Amount | Large coverages need more scrutiny | +0.5% per 100K coverage         |
+
+Sample simple Risk Scoring Algorithm:
+
+    baseScore = 50  // neutral risk
+
+    if industry == "Construction" or "Mining":
+        baseScore += 20
+
+    if located_in_flood_zone:
+        baseScore += 15
+
+    if revenue > 10_000_000:
+        baseScore += 10
+
+    if past_claims_count > 2:
+        baseScore += 30
+
+    finalRiskScore = baseScore
+    Result: You now have a number like 75 (on a scale of 0-100).
+
+B. Premium Calculation Formula Once we have the risk score, we can calculate the premium.
+
+Simple premium formula:
+
+    basePremium = coverage_amount * 0.01  // 1% of requested coverage
+
+    risk_factor = riskScore / 100  // Normalize to [0, 1]
+
+    finalPremium = basePremium * (1 + risk_factor)
+
+Example:
+
+Coverage requested: 1 Million
+Risk Score: 75
+Base premium: 1M * 0.01 = 10,000
+Risk factor: 75/100 = 0.75
+Final premium: 10,000 * (1 + 0.75) = 17,500
+
+Final Quote: Premium = $17,500
+

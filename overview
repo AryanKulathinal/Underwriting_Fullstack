@@ -1,0 +1,65 @@
+Step 1: High-Level Functional Requirements
+------------------------------------------
+Here are core things your app should handle:
+
+User Authentication:
+- Login/signup for underwriters
+- Admin role vs Underwriter role
+
+Risk Submissions Management:
+- View new risk submissions
+- Add a new submission (details about client, coverage required, etc.)
+- Update or review existing submissions
+
+Risk Evaluation:
+- Enter details like risk score, premium, conditions
+- Upload documents (risk reports, financials)
+
+Quote Management:
+- Generate and send quotes to brokers
+- Keep track of quotes sent, pending, accepted, declined
+
+Policy Issuance:
+- If a quote is accepted → issue a reinsurance policy
+- Store policy documents (optional for now)
+
+Dashboard / Analytics:
+- View total submissions, quotes approved, policies issued
+- Simple charts like submissions by month
+
+Admin Panel:
+- Manage users (add, delete)
+- Set permissions
+
+
+Step 2: Core Entities (Data Models)
+-----------------------------------
+We'll need backend tables (Postgres) for:
+- Users (underwriters, admins)
+- Submissions (risk details)
+- Quotes
+- Policies
+- (Optional: Documents table if file uploads needed)
+
+
+Step 3: Backend Logic (NestJS)
+------------------------------
+- Authentication using JWT
+- CRUD APIs for:
+  - Submissions
+  - Quotes
+  - Policies
+- Role-based access (Admin vs Underwriter)
+- File upload (for risk documents) — maybe using Multer
+- Database relations (TypeORM)
+
+
+Step 4: Frontend Logic (React + Chakra UI)
+------------------------------------------
+- Login Page
+- Dashboard
+- Submission Form
+- Submission List (Table)
+- Quote Form
+- Policy View
+- Admin User Management Page

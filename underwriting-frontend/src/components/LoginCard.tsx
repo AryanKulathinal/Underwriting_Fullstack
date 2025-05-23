@@ -19,12 +19,11 @@ interface LoginCardProps {
 }
 
 export default function LoginCard({ onToggle }: LoginCardProps) {
-
   const navigate = useNavigate();
-  
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  // const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   const [usernameError, setUsernameError] = useState(false);
@@ -32,7 +31,7 @@ export default function LoginCard({ onToggle }: LoginCardProps) {
 
   const handleLogin = async () => {
     setLoading(true);
-    setError(null);
+    // setError(null);
 
     setUsernameError(!username);
     setPasswordError(!password);
@@ -51,10 +50,10 @@ export default function LoginCard({ onToggle }: LoginCardProps) {
         duration: 3000,
       });
       setTimeout(() => {
-        navigate("/dashboard");  
+        navigate("/dashboard");
       }, 1000);
     } catch (err: any) {
-      setError(err.message);
+      // setError(err.message);
       toaster.create({
         title: "Login Failed ",
         description: err.message,
@@ -107,7 +106,7 @@ export default function LoginCard({ onToggle }: LoginCardProps) {
           </Link>
         </Text>
       </VStack>
-      <Toaster/>
+      <Toaster />
     </Box>
   );
 }

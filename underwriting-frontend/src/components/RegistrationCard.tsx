@@ -11,7 +11,7 @@ import {
 
 import { useState } from "react";
 import { register } from "@/api/auth";
-import {Toaster, toaster } from "@/components/ui/toaster";
+import { Toaster, toaster } from "@/components/ui/toaster";
 
 interface RegistrationCardProps {
   onToggle: () => void;
@@ -21,7 +21,7 @@ export default function RegistrationCard({ onToggle }: RegistrationCardProps) {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  // const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   const [nameError, setNameError] = useState(false);
@@ -30,7 +30,7 @@ export default function RegistrationCard({ onToggle }: RegistrationCardProps) {
 
   const handleRegister = async () => {
     setLoading(true);
-    setError(null);
+    // setError(null);
 
     setNameError(!name);
     setUsernameError(!username);
@@ -52,13 +52,12 @@ export default function RegistrationCard({ onToggle }: RegistrationCardProps) {
           label: "Go to Login",
           onClick: () => onToggle(),
         },
-      })
-      
+      });
     } catch (err: any) {
-      setError(err.message);
+      // setError(err.message);
       toaster.create({
         title: "Registration Failed ",
-        description: err.message ,
+        description: err.message,
         type: "error",
         duration: 3000,
       });
@@ -117,8 +116,7 @@ export default function RegistrationCard({ onToggle }: RegistrationCardProps) {
           </Link>
         </Text>
       </VStack>
-      <Toaster/>
+      <Toaster />
     </Box>
-
   );
 }

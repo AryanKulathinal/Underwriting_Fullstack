@@ -56,7 +56,6 @@ export const SubmissionsService = {
     }
   },
 
-
   createSubmission: async (data: CreateSubmissionDto): Promise<Submission> => {
     try {
       const response = await axiosInstance.post(SUBMISSIONS_URL, data);
@@ -65,7 +64,6 @@ export const SubmissionsService = {
       throw new Error(error.response?.data?.message || 'Failed to create submission');
     }
   },
-
 
   updateSubmission: async (id: number, data: UpdateSubmissionDto): Promise<Submission> => {
     try {

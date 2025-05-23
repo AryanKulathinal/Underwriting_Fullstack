@@ -17,12 +17,12 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   const corsOptions: CorsOptions = {
-    origin: ["http://localhost:5173"],
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    origin: ['http://localhost:5173', 'http://localhost'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
-    };
-    
-    app.enableCors(corsOptions);
+  };
+
+  app.enableCors(corsOptions);
 
   await app.listen(3000);
 }

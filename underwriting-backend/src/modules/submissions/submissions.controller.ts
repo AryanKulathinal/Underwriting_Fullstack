@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { SubmissionsService } from './submissions.service';
 import { CreateSubmissionDto } from './dto/create-submission.dto';
 import { UpdateSubmissionDto } from './dto/update-submission.dto';
@@ -32,7 +41,10 @@ export class SubmissionsController {
 
   @Patch(':id')
   @ApiOperation({ summary: 'Update submission' })
-  update(@Param('id') id: string, @Body() updateSubmissionDto: UpdateSubmissionDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateSubmissionDto: UpdateSubmissionDto,
+  ) {
     return this.submissionsService.update(+id, updateSubmissionDto);
   }
 
@@ -40,5 +52,12 @@ export class SubmissionsController {
   @ApiOperation({ summary: 'Delete submission' })
   remove(@Param('id') id: string) {
     return this.submissionsService.remove(+id);
+  }
+
+  @Get('stats/dashboard')
+  @ApiOperation({ summary: 'Get dashboard statistics' })
+  @ApiResponse({ status: 200, description: 'Return dashboard statistics' })
+  getDashboardStats() {
+    return this.submissionsService.getDashboardStats();
   }
 }

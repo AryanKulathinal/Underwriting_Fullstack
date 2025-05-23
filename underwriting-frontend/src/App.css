@@ -1,0 +1,18 @@
+/* App.css */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f7fafc; /* equivalent to gray.100 */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4299e1; /* equivalent to blue.400 */
+  border-radius: 24px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #2b6cb0; /* equivalent to blue.600 */
+}

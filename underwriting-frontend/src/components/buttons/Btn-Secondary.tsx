@@ -1,24 +1,25 @@
 // src/components/SecondaryButton.tsx
 import colors from "@/utils/colors";
 import { Button } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
 
-type Props = {
+interface Props {
   label: string;
-  to: string;
-};
+  onClick: () => void;
+}
 
-export default function SecondaryButton({ label, to }: Props) {
-  const navigate = useNavigate();
+export default function SecondaryButton({ label, onClick }: Props) {
+  const handleClick = () => {
+    onClick();
+  };
 
   return (
     <Button
-      size="md"
+      size="lg"
       rounded="md"
       variant="outline"
       borderColor={colors.blue}
       color={colors.blue}
-      onClick={() => navigate(to)}
+      onClick={handleClick}
     >
       {label}
     </Button>

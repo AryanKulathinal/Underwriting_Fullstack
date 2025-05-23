@@ -14,11 +14,14 @@ import Navbar from "@/components/Navbar";
 import PrimaryButton from "@/components/buttons/Btn-Primary";
 import SecondaryButton from "@/components/buttons/Btn-Secondary";
 import colors from "@/utils/colors";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   return (
     <Box minH="100vh" bg="white" py={6}>
-      <Navbar />
+      <Navbar type="home" />
       <Separator size="md" />
       {/* Hero Section */}
       <Flex
@@ -31,12 +34,17 @@ const HomePage = () => {
         {/* Left Content */}
         <VStack align="start" gap={5} maxW="lg">
           <Heading as="h1" size="2xl" color={colors.blue}>
-            Welcome to ReinsurePro,
+            Welcome to underwriting excellence,
           </Heading>
           <Heading as="h2" size="lg" color={colors.gray1}>
             Assess, Underwrite, Manage
           </Heading>
-          <Text fontSize="md" color={colors.gray2} maxW="lg" textAlign="justify">
+          <Text
+            fontSize="md"
+            color={colors.gray2}
+            maxW="lg"
+            textAlign="justify"
+          >
             Streamline reinsurance workflows with smart risk evaluation and
             underwriting automation — all in one platform built for insurers.
             Our solution leverages advanced algorithms and real-time data
@@ -46,8 +54,16 @@ const HomePage = () => {
             elevate your risk management strategy to the next level.
           </Text>
           <HStack gap={4}>
-            <PrimaryButton label="Login Now" to="/login" />
-            <SecondaryButton label="View Dashboard" to="/dashboard" />
+            <PrimaryButton
+              label="Login Now"
+              onClick={() => {
+                navigate("/login");
+              }}
+            />
+            <SecondaryButton
+              label="View Dashboard"
+              onClick={() => navigate("/dashboard")}
+            />
           </HStack>
         </VStack>
 

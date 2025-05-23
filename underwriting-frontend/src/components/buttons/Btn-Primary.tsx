@@ -1,17 +1,18 @@
 import colors from "@/utils/colors";
 import { Button } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
 
-type Props = {
+interface Props {
   label: string;
-  to: string;
-};
+  onClick: () => void;
+}
 
-export default function PrimaryButton({ label, to }: Props) {
-  const navigate = useNavigate();
+export default function PrimaryButton({ label, onClick }: Props) {
+  const handleClick = () => {
+    onClick();
+  };
 
   return (
-    <Button rounded="md" bg={colors.blue} onClick={() => navigate(to)}>
+    <Button size="lg" rounded="md" bg={colors.blue} onClick={handleClick}>
       {label}
     </Button>
   );

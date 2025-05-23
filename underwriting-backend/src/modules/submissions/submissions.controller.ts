@@ -33,13 +33,6 @@ export class SubmissionsController {
     return this.submissionsService.findAll();
   }
 
-  @Get('stats/dashboard')
-  @ApiOperation({ summary: 'Get dashboard statistics' })
-  @ApiResponse({ status: 200, description: 'Return dashboard statistics' })
-  getDashboardStats() {
-    return this.submissionsService.getDashboardStats();
-  }
-
   @Get(':id')
   @ApiOperation({ summary: 'Get submission by ID' })
   findOne(@Param('id') id: string) {

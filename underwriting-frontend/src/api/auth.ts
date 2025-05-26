@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const AUTH_BASE_URL = 'http://localhost:3000/auth';
+const AUTH_BASE_URL = import.meta.env.VITE_AUTH_URL;
 
 interface LoginDto {
   username: string;
